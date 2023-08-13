@@ -1,20 +1,28 @@
-// HTML del formulario 
-
 <?php
 
-// Validación y registro de usuario
-
+// Validación de datos
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-  // Validar datos del formulario
+  $name = $_POST['name'];
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+
+  // Validaciones
 
   // Encriptar contraseña
   $hash = password_hash($password, PASSWORD_DEFAULT);
-  
-  // Insertar nuevo usuario en la BD
 
-  // Mensajes de errores o éxito
+  // Insertar nuevo usuario en la BD
 
 }
 
+// Importar CSS
+require 'assets/styles.css';
+
 ?>
+
+<!-- Formulario de registro -->
+
+<form>
+  <!-- Inputs y botón submit -->
+</form>

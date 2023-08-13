@@ -1,19 +1,20 @@
 <?php
 
-// Conexión BD 
+// Conexión a la BD 
 require 'db.php';
 
-session_start(); 
+session_start();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-  // Obtener datos
+  // Obtener datos del formulario
   $email = $_POST['email'];
-  $password = $_POST['password'];   
+  $password = $_POST['password'];
 
   // Consulta SQL
   $sql = "SELECT * FROM usuarios WHERE email = ?";
-
+  
+  // Preparar y ejecutar consulta
   $stmt = mysqli_prepare($conn, $sql);
   mysqli_stmt_bind_param($stmt, "s", $email);
   mysqli_stmt_execute($stmt);
@@ -22,21 +23,27 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   $user = mysqli_fetch_assoc($result);
 
-  // Verificar contraseña 
+  // Verificar contraseña
   if(password_verify($password, $user['password'])) {
       
-    // Iniciar sesión
     $_SESSION['id'] = $user['id'];
-    $_SESSION['name'] = $user['name'];
 
-    // Redireccionar a perfil (NUEVO)
     header("Location: profile.php");
-  }
-  else {
-    // Contraseña inválida
+
+  } else {
+    echo "Datos incorrectos";
   }
 
 }
 
-// Formulario
+// Importar CSS
+require 'assets/styles.css';
+
 ?>
+
+
+<!-- Formulario HTML -->
+
+<form>
+  <!-- Inputs y botón -->  
+</form>
